@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Ready - YouTube 320p Downloader</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #2e7d32;
+            margin-bottom: 30px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .download-link {
+            display: inline-block;
+            background-color: #2e7d32;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .download-link:hover {
+            background-color: #1b5e20;
+        }
+        .home-link {
+            display: inline-block;
+            color: #2e7d32;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        .home-link:hover {
+            text-decoration: underline;
+        }
+        .flash {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Download is Ready!</h1>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <p>Your YouTube video has been successfully downloaded.</p>
+        
+        <a href="{{ url_for('get_file', filename=filename) }}" class="download-link">Download Now</a>
+        
+        <p><small>The download link will expire once you close this page.</small></p>
+        
+        <a href="{{ url_for('index') }}" class="home-link">Download another video</a>
+    </div>
+</body>
+</html> 
